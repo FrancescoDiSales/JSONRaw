@@ -1,32 +1,33 @@
 
-#include<fstream>
-#include<string>
 
-#include<array>
+#include<string>
+#include<fstream>
+#include<vector>
+
 
 using namespace std;
 
-template<typename Type>
+
 
 class JSONR
 {
 
 	private:
 		fstream JSON;
-
+		string quote ="\"";
+		vector<string> compiler;
+		
 	public:
-		JSONR(fstream,string);
+		JSONR(string);
 
 		void addString(string,string);
-		void addBool(string,bool);
-		void addInteger(string,int);
+		void addBool(string,string);
+		void addInteger(string,string);
 		void addObject(string,string[]);
 
-		void addArray(string,array<Type,int>);
 		void addArrayObject(string,string[]);
 
-
-		~JSONR();
-
+		void compileJSON();
+		void closeJSON();
 
 };
