@@ -1,14 +1,11 @@
 #include<string>
 #include<fstream>
-
 #include<vector>
-
 
 #include"JSONR.h"
 
 
 using namespace std;
-
 
 
 JSONR::JSONR(string filename)
@@ -54,8 +51,7 @@ void JSONR::addString(string key,string value)
 
 void JSONR::addBool(string key,string value)
 {
-	
-	if(value!="false" || value !="true")
+	if(!value.compare("false") || !value.compare("true"))
 		this->compiler.push_back( " \" error \": \"invalid boolean format \" ");
 	else
 		this->compiler.push_back(this->quote+key+this->quote+":"+this->quote+value+this->quote);
@@ -69,9 +65,9 @@ void JSONR::addArray(string key,string array[],int size)
 	for(int i=0;i<size;i++)
 	{
 		if(i==size-1)
-		array_values+=array[i];
+		 array_values+=array[i];
 		else
-		array_values+=array [i]+",";
+		 array_values+=array [i]+",";
 	}
 	
 	this->compiler.push_back(this->quote+key+this->quote+":"+this->quote+"["+array_values+"]"+this->quote);
@@ -101,6 +97,8 @@ void JSONR::addObject(string key,string keys[],string values[],int sizeKey,int s
 			}
 				
 	}
+	
+
 
 	this->compiler.push_back(this->quote+key+this->quote+":"+this->quote+"{"+relationship_final+"}"+this->quote);
 	
