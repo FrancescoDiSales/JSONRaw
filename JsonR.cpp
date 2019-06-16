@@ -1,4 +1,3 @@
-#include<iostream>
 #include<string>
 #include<fstream>
 
@@ -44,9 +43,13 @@ void JSONR::closeJSON()
 
 void JSONR::addInteger(string key,string value)
 {
-	this->compiler.push_back(this->quote+key+this->quote+":"+this->quote+value+this->quote);
+	this->compiler.push_back(this->quote+key+this->quote+":"+value);
 }
 
+void JSONR::addString(string key,string value)
+{
+	this->compiler.push_back(this->quote+key+this->quote+":"+this->quote+value+this->quote);
+}
 
 
 void JSONR::addBool(string key,string value)
@@ -85,21 +88,22 @@ void JSONR::addObject(string key,string keys[],string values[],int sizeKey,int s
 	for(int i=0;i<sizeKey;i++)
 	{
 		
-		key_values = keys[i];
-		array_values = values[i];
+			key_values = keys[i];
+			array_values= values[i];
 					
-		if(i==sizeVal-1)
-		{
-		  relationship_final.append(key_values+":"+array_values);
-		}
-		else
-		{
-		   relationship_final.append(key_values+":"+array_values+",");
-		}
+			if(i==sizeVal-1)
+			{
+				relationship_final.append(key_values+":"+array_values);
+			}
+			else
+			{
+				relationship_final.append(key_values+":"+array_values+",");
+			}
 				
 	}
 
 	this->compiler.push_back(this->quote+key+this->quote+":"+this->quote+"{"+relationship_final+"}"+this->quote);
 	
 }
+
 
