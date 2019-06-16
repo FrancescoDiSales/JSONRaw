@@ -75,7 +75,7 @@ void JSONR::addArray(string key,string array[],int size)
 	
 }
 
-void JSONR::addArrayObject(string key,string keys[],string values[],int sizeKey,int sizeVal)
+void JSONR::addObject(string key,string keys[],string values[],int sizeKey,int sizeVal)
 {
 	string key_values;
 	string array_values;
