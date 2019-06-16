@@ -1,9 +1,9 @@
 #include<iostream>
-#include<array>
 #include<string>
 #include<fstream>
 
-#include<cstring>
+#include<vector>
+
 
 #include"JSONR.h"
 
@@ -17,24 +17,20 @@ JSONR::JSONR(string filename)
 	
 	this->JSON.open(filename+".json",std::fstream::out);
 	this->JSON<<"{"<<endl;
+	
 }
 
 void JSONR::compileJSON()
 {
 
-	if(this->compiler.capacity() == 0)
-		throw "no info given for the JSON";
-
-	for(int i=0;i<this->compiler.capacity();i++)
+	for(int i=0;i<this->compiler.size();i++)
 	{
-		JSON<<this->compiler[i]<<",";
-		
-		if(i == this->compiler.capacity()-1)
-		{
-			JSON<<this->compiler[i];
-		}
-		
+		if(i==this->compiler.size()-1)
+			this->JSON<<this->compiler[i];
+		else
+			this->JSON<<this->compiler[i]<<",";
 	}
+
 
 }
 
@@ -63,3 +59,18 @@ void JSONR::addBool(string key,string value)
 	
 }
 
+void JSONR::addArray(string key,string array[],int size)
+{
+	string array_values;
+	
+	for(int i=0;i<size;i++)
+	{
+		if(i==size-1)
+		array_values+=array[i];
+		else
+		array_values+=array [i]+",";
+	}
+	
+	this->compiler.push_back(this->quote+key+this->quote+":"+this->quote+"["+array_values+"]"+this->quote);
+	
+}
