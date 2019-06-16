@@ -58,8 +58,8 @@ void JSONR::addBool(string key,string value)
 	
 	if(value!="false" && value !="true")
 		this->compiler.push_back( " \" error \": \"invalid boolean format \" ");
-	
-	this->compiler.push_back(this->quote+key+this->quote+":"+this->quote+value+this->quote);
+	else
+		this->compiler.push_back(this->quote+key+this->quote+":"+this->quote+value+this->quote);
 	
 }
 
