@@ -27,9 +27,9 @@ void JSONR::compileJSON()
 	for(int i=0;i<this->compiler.size();i++)
 	{
 		if(i==this->compiler.size()-1)
-			this->JSON<<this->compiler[i];
+			this->JSON<<this->compiler[i]<<"\n";
 		else
-			this->JSON<<this->compiler[i]<<",";
+			this->JSON<<this->compiler[i]<<", \n";
 	}
 
 
