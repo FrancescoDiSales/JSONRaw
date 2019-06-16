@@ -1,12 +1,10 @@
-
-
 #include<string>
 #include<fstream>
 #include<vector>
 
+#include<queue>
 
 using namespace std;
-
 
 
 class JSONR
@@ -25,7 +23,7 @@ class JSONR
 		void addInteger(string,string);
 		void addObject(string,string[]);
 
-		void addArrayObject(string,string[]);
+		void addArray(string,string[],int);
 
 		void compileJSON();
 		void closeJSON();
