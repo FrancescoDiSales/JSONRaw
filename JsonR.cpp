@@ -74,3 +74,32 @@ void JSONR::addArray(string key,string array[],int size)
 	this->compiler.push_back(this->quote+key+this->quote+":"+this->quote+"["+array_values+"]"+this->quote);
 	
 }
+
+void JSONR::addArrayObject(string key,string keys[],string values[],int sizeKey,int sizeVal)
+{
+	string key_values;
+	string array_values;
+	
+	string relationship_final;
+	
+	for(int i=0;i<sizeKey;i++)
+	{
+		
+		key_values = keys[i];
+		array_values = values[i];
+					
+		if(i==sizeVal-1)
+		{
+		  relationship_final.append(key_values+":"+array_values);
+		}
+		else
+		{
+		   relationship_final.append(key_values+":"+array_values+",");
+		}
+				
+	}
+
+	this->compiler.push_back(this->quote+key+this->quote+":"+this->quote+"{"+relationship_final+"}"+this->quote);
+	
+}
+
